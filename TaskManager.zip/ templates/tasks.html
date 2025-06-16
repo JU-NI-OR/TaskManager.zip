@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>My Tasks</title></head>
+<body>
+<h2>Your Task List</h2>
+<form method="POST" action="/add">
+    <input type="text" name="task" placeholder="New task" required>
+    <button type="submit">Add</button>
+</form>
+<ul>
+    {% for task in tasks %}
+    <li>
+        <form method="POST" action="/edit/{{ task[0] }}">
+            <input type="text" name="task" value="{{ task[1] }}">
+            <button type="submit">Update</button>
+        </form>
+        <a href="/delete/{{ task[0] }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+<a href="/logout">Logout</a>
+</body>
+</html>
